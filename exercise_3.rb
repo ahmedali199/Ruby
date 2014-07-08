@@ -13,9 +13,19 @@ yasmine=[60,90,95]
 # hint order_grades(*attributes)
 # return value should be the hash.
 
-
+def order_grades(*attr)
+	result = Hash.new(0)
+	(attr).each do |i|
+#		puts i
+		(i).each do |j|
+			result[j] = result[j] + 1
+		end
+#		puts result
+	end
+	result
+end
 # This should work
-puts order_grades(ahmed,mohamed,yasmine)
+p order_grades(ahmed,mohamed,yasmine)
 # This should work too
-puts order_grades(ahmed,mohamed)
+p order_grades(ahmed,mohamed)
  
