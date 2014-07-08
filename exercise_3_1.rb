@@ -15,6 +15,24 @@
 
 
 class Document
+	attr_accessor :author, :title, :content
+	def initialize(attributes = {})
+		@author = attributes[:author]
+		@title  = attributes[:title]
+		@content = attributes[:content]
+	end
+
+	def + (doc)
+		result = Document.new
+		result.author = @author
+		result.title = @title
+		if doc.class == String
+			result.content = @content + doc
+		else
+			result.content = @content + doc.content
+		end
+		result
+	end
 end
 
 
