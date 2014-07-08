@@ -24,10 +24,19 @@ class Document
 	def toArray
 		result = @content.split
 	end
+
+	def each_word
+		yield(toArray) #http://mudge.name/2011/01/26/passing-blocks-in-ruby-without-block.html
+	end
 end
 
 a=Document.new(:author => "someone", :title => "my book", :content => "this is the content of my book")
 b=Document.new(:author => "someone", :title => "my book", :content => "and so is this.")
 
-r = a.toArray
-print r
+#r = a.toArray
+#print r
+
+(a).each_word do |word|
+	puts word
+end
+
