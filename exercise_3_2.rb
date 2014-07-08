@@ -14,5 +14,20 @@
 
 
 class Document
+	attr_accessor :author, :title, :content
+	def initialize(attributes = {})
+		@author = attributes[:author]
+		@title  = attributes[:title]
+		@content = attributes[:content]
+	end
+
+	def toArray
+		result = @content.split
+	end
 end
 
+a=Document.new(:author => "someone", :title => "my book", :content => "this is the content of my book")
+b=Document.new(:author => "someone", :title => "my book", :content => "and so is this.")
+
+r = a.toArray
+print r
