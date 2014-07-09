@@ -16,14 +16,30 @@
 # and pen is the new word. This should work on any word (not just book).
 # hint:  'method_missing'
 
-require 'time'
 
-module Generic
-   
+module Generic	
+    def current_date
+		require 'time'
+		time = Time.new
+    	s = time.year.to_s + "-" + "#{time.month}" + "-" + "#{time.day}"
+    end
 end
 
 
 class Document
-    
+    include Generic
+    attr_accessor :author, :title, :content
+	def initialize(attributes = {})
+		@author = attributes[:author]
+		@title  = attributes[:title]
+		@content = attributes[:content]
+	end
+
+	def title_with_date
+		res = @title + " " + current_date.to_s
+	end
 end
 
+a=Document.new(:author => "someone", :title => "my book", :content => "this is the content of my book")
+r=a.title_with_date
+puts r
