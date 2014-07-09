@@ -38,8 +38,24 @@ class Document
 	def title_with_date
 		res = @title + " " + current_date.to_s
 	end
+
+	def replace_word(old_word, new_word)
+		array = @content.split
+		res = "" 
+		(array).each do |word|
+			if word == old_word
+				word = new_word
+			end
+			res = res + word + " "
+		end
+		@content = res
+	end
+
 end
 
-a=Document.new(:author => "someone", :title => "my book", :content => "this is the content of my book")
-r=a.title_with_date
-puts r
+a=Document.new(:author => "someone", :title => "my book", :content => "this is the content of my the book")
+#r=a.title_with_date
+#puts r
+
+a.replace_word("the", "THE")
+puts a.content
